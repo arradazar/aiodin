@@ -3,7 +3,10 @@
 Adopt a pet website
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
-## Run Development Server
+## Run Backend Server
+1. Execute command in terminal to run php server: php -S 127.0.0.1:3600 -t <relative path>/aiodin/backend/
+
+## Run Angular Server
 
 1. Navigate to this projects root directory
 2. Run `ng serve --open` for a dev server. 
