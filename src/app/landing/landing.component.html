@@ -1,0 +1,172 @@
+<div class="container-fluid">
+  <div class="row above-fold">
+    <div class="container">
+      <div class="col-lg-8 col-sm-12">
+        <navbar></navbar>
+      </div>
+      <div class="col-lg-8">
+        <h2>Last Chance to Adopt!</h2>
+        <p> {{display}}</p>
+        <a class="btn btn-primary" href="#appt" id="make-appt">Make Appointment Now</a>
+        <!-- <button type="button" class="btn btn-primary" id="make-appt">Make Appointment Now</button> -->
+      </div>
+    </div>
+  </div>
+  <div class="row section">
+    <div class="container">
+      <div class="col-lg-12">
+        <h2>Only heroes - adopt.</h2>
+        <p>
+          <b>Not all heroes wear capes!</b> Saving the world is not a job
+            that is only exclusive to comic heros in new york city...
+            <br> Now you can do your part with one paw at a time.
+        </p>
+        <ul class="reasons">
+          <li>
+            <img src="../../assets/images/graphic_01.png">
+            <h5>True Companionship</h5>
+            <p>Opening your doors to your new furry friend brings 
+              a wholesome new meaning to friendship.</p>
+          </li>
+          <li>
+            <img src="../../assets/images/graphic_02.png">
+            <h5>Fulfilling Role</h5>
+            <p>The major side effect of being there with your furry friend
+              is feeling very rewarded when they purr!
+            </p>
+          </li>
+          <li>
+            <img src="../../assets/images/graphic_03.png">
+            <h5>Loving Community</h5>
+            <p>You will be part of a huge and growing community of adopters,
+              worldwide, to share your experiences!
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row section hall-of-meows">
+    <div class="container">
+      <div class="col-lg-6">
+        <h3>Hall of meows.</h3>
+        <p>Featured felines of the week!</p>
+        <div class="grid">
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_01.png">
+          </div>
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_02.png">
+          </div>
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_03.png">
+          </div>
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_04.png">
+          </div>
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_05.png">
+          </div>
+          <div class="grid-item">
+            <img src="../../assets/images/gallery_06.png">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary">Browse Mode</button>
+      </div>
+    </div>
+  </div>
+  <div class="row section adopting101 justify-content-md-center">
+    <div class="container">
+      <div class="col-lg-8 centered-col">
+        <h3>Adopting 101</h3>
+        <p>Class is in session! Here's a basic guide of what you 
+          would probably want to have along with you at our adoption center:
+        </p>
+        <ul>
+          <li>
+            <h4>An Open Mind</h4>
+            <label>Not all furry creatures are alike!</label>
+          </li>
+          <li>
+            <h4>Comfortable Shoes</h4>
+            <label>You'll be on your feet all day, trust us.</label>
+          </li>
+          <li>
+            <h4>Mobile Phone</h4>
+            <label>To take pictures of your potential furry
+              companion, of course!
+            </label>
+          </li>
+        </ul>
+        <button type="button" class="btn btn-primary">Let's Adopt</button>
+      </div>
+    </div>
+  </div>
+  <div class="row section make-appointment" id="appt">
+    <div class="container">
+      <div class="col-lg-8 centered-col">
+        <h3>Make an Appointment</h3>
+        <p>
+          <b>Time is gold!</b>
+          Make appointment to prevent disappointment!
+        </p>
+        <form [formGroup]="appointmentForm">
+          <div class="form-group">
+            <label>
+              <input class="form-control dt" placeholder="Date & Time" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+              <owl-date-time #dt></owl-date-time>
+            </label>
+            <select formControlName="_state" class="form-control" (change)="selectChanged($event)">
+              <option>State</option>
+              <option>State A</option>
+              <option>State B</option>
+              <option>State C</option>
+              <option>State D</option>
+            </select>
+            <select formControlName="_branch" class="form-control">
+              <option [value]="branch" *ngFor="let branch of branches">{{branch}}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row section footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h3>Extra Hands?</h3>
+          <p>
+            YES please! Be a volunteer today:
+          </p>
+        </div>
+        <div class="col-lg-6 email-submit">
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="youremail@address.com">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <hr>
+        </div>
+        <div class="col-lg-4 company">
+          © 2019 THE CATASTROPHE
+        </div>
+        <div class="col-lg-8">
+          <ul class="nav footer-items">
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">PRIVACY POLICY</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">LEGAL NOTICES</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

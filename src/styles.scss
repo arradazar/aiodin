@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+:root {
+    --orange: #ffb302;
+    --grey:#C48900;
+    --dark_grey: #525252;
+    --btn_orange: #F55E43;
+    --btn_dark_orange: #FF2600;
+    --blue: #392ca0;
+    --dark_blue: #140e48;
+    --black: #303030;
+}
+* {
+    font-family: 'Poppins', sans-serif;
+}
+button, a, li {
+    font-family: 'Fjalla One', sans-serif;
+}
+navbar {
+    width: 100%;
+}
+.btn-primary {
+    text-transform: uppercase;
+    border: none;
+    height: 52px;
+    border-radius: 2px;
+    padding: 0px 37px;
+    background: var(--btn_orange);
+    border-bottom: 4px solid var(--btn_dark_orange);
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+        background: var(--btn_dark_orange);
+        border-bottom: 4px solid #D82E10;
+    }
+}
+h2 {
+    font-size: 65px;
+    font-weight: 700;
+}
+.centered-col {
+    margin: auto;
+    text-align: left;
+}
+.form-group {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.form-control {
+    height: 52px;
+    font-size: 14px;
+}
+
+@media (max-width: 800px) {
+    h2 {
+        font-size: 40px;
+    }
+    h3 {
+        font-size: 30px!important;
+    }
+}
