@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, timer, NEVER, BehaviorSubject, fromEvent, of } from 'rxjs';
-import { map, tap, takeWhile, share, startWith, switchMap, filter } from 'rxjs/operators';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'landing-page',
@@ -18,7 +16,7 @@ export class LandingComponent implements OnInit {
   stateB = ["BranchB", "BranchB1", "BranchB2", "BranchB3"];
   stateC = ["BranchC"];
   stateD = ["BranchD", "BranchD1","BranchD2"];
-  branches: any;
+  branches = ["Branch"];
 
   appointmentForm: FormGroup;
 
@@ -26,12 +24,10 @@ export class LandingComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    // start site timer
     this.startTimer();
-
-    this.appointmentForm = this.fb.group({
-      _state: this.states,
-      _branch: ['Branch'],
-    });
+    // initialize make appointment form
+    this.createForm();
   }
 
   startTimer() {
@@ -45,13 +41,26 @@ export class LandingComponent implements OnInit {
     }, 1000);
   }
 
+  // convert timer data into string
   transform(value: number): string {
     var sec_num = value; 
     var hours   = Math.floor(sec_num / 3600);
     var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
     var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
+    if (hours <= 0) {
+      return 'Adoption Fair already expired!';
+    }
+
     return hours+' hours '+minutes+' mins '+seconds+ ' secs left';
+  }
+
+  createForm() {
+    this.appointmentForm = this.fb.group({
+      _date: [new Date(), ''],
+      _state: [this.states[0], ''],
+      _branch: [this.branches, '']
+    });
   }
 
   selectChanged(selectedValue:any) {
@@ -72,9 +81,15 @@ export class LandingComponent implements OnInit {
         console.log("Default");
         break;
     }
-    this.appointmentForm = this.fb.group({
+    this.appointmentForm.patchValue({
       _branch: this.branches
     });
+  }
+
+  makeAppointment() {
+    console.log("Date: ", this.appointmentForm.get('_date').value);
+    console.log("State: ", this.appointmentForm.get('_state').value);
+    console.log("Branch: ", this.appointmentForm.get('_branch').value);
   }
 
 }

@@ -110,10 +110,11 @@
           <b>Time is gold!</b>
           Make appointment to prevent disappointment!
         </p>
-        <form [formGroup]="appointmentForm">
+        <form [formGroup]="appointmentForm" (ngSubmit) = "makeAppointment()">
           <div class="form-group">
             <label>
-              <input class="form-control dt" placeholder="Date & Time" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+              <input formControlName="_date" 
+                class="form-control dt" placeholder="Date & Time" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
               <owl-date-time #dt></owl-date-time>
             </label>
             <select formControlName="_state" class="form-control" (change)="selectChanged($event)">
