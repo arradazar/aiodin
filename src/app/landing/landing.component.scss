@@ -223,5 +223,14 @@
                 }
             }
         }
+        &.make-appointment {
+            .form-group {
+                flex-direction: column;
+                .form-control {
+                    width: 100%!important;
+                    margin-bottom: 10px;
+                }
+            }
+        }
     }
 }

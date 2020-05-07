@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { Appointment } from '../services/appointment.model';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'landing-page',
@@ -19,9 +22,11 @@ export class LandingComponent implements OnInit {
   branches = ["Branch"];
 
   appointmentForm: FormGroup;
+  appointment:  Appointment;
+  submittedAppointment: Appointment = { status : 1 , messages:"Setting Appointment", data: []};
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, 
+    private apiService: ApiService) { }
 
   ngOnInit() {
     // start site timer
@@ -87,9 +92,29 @@ export class LandingComponent implements OnInit {
   }
 
   makeAppointment() {
+    this.submittedAppointment.data[0] = this.appointmentForm.get('_date').value;
+    this.submittedAppointment.data[1] = this.appointmentForm.get('_state').value;
+    this.submittedAppointment.data[2] = this.appointmentForm.get('_branch').value;
+    this.createAppointment();
     console.log("Date: ", this.appointmentForm.get('_date').value);
     console.log("State: ", this.appointmentForm.get('_state').value);
     console.log("Branch: ", this.appointmentForm.get('_branch').value);
   }
+
+  createAppointment() {
+    this.apiService.createAppointment(this.submittedAppointment).subscribe((appointment: Appointment)=>{
+      console.log("Appointment created, ", appointment);
+      Swal.fire({
+        title: appointment.messages,
+        icon: 'success',
+        html:
+        'Here are the details:<br>' +
+        'Date: ' + appointment.data[0] + '<br>' +
+        'State: ' + appointment.data[1] + '<br>' +
+        'Branch: ' + appointment.data[2]
+      });
+    });
+  }
+
 
 }
